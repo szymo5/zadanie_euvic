@@ -44,7 +44,7 @@ const Form = ({language}:any) => {
   };
 
   return (
-    <Box sx={{width: '320px', padding: '20px 10px', border: '1px solid #ccc', textAlign: 'center'}}>
+    <Box sx={{width: '320px', padding: '20px 10px', border: '1px solid #ccc', textAlign: 'center'}} className="form-container">
       <h3 style={{marginBottom: '20px'}}>{selectLanguage(formText.headerText, language)}</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         {(errors.name?.message) && <label className="create-label">{selectLanguage(formText.inputTextError, language)}</label>}

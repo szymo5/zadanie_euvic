@@ -5,6 +5,7 @@
 
 body{
   font-family: 'Lato';
+  background-image: linear-gradient(75deg, rgba(255, 255, 255, 1) 0%, rgba(228, 196, 138, 1) 100%);
 }
 
 .App {
