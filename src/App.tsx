@@ -17,8 +17,10 @@ const App = () => {
     <Box sx={{width: '100%', height: '100vh'}} m='auto' p='0'>
       <Navbar language={language} setLanguage={setLanguage}/>
       <Routes>
-        <Route path='/main' element={<Main/>} />
-        <Route path='*' element={<NotFound language={language}/>} />
+        <Route path='/main' element={<Main language={language}/>} />
+        <Route path='/404' element={<NotFound language={language}/>}/>
+        <Route path='/' element={ <Navigate replace to="/main"/>} />
+        <Route path='*' element={ <Navigate replace to="/404"/>} />
       </Routes>
     </Box>
   )

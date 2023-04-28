@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body{
+  font-family: 'Lato';
+}
+
 .App {
   text-align: center;
 }
