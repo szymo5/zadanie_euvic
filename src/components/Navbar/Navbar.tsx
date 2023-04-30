@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Box, FormControl, InputLabel, MenuItem, Select, Stack } from '@mui/material'
 import LanguageIcon from '@mui/icons-material/Language';
-import {selectLanguage} from '../utils/selectLanguage';
-import {navbarText} from '../utils/translateText';
+import {selectLanguage} from '../../utils/selectLanguage';
+import {navbarText} from '../../utils/translateText';
 
-import './Navbar.css';
+import './Navbar.scss';
 
 const Navbar = ({language, setLanguage}: any) => {
+  
   const handleChange = (event: any) => {
     setLanguage(event.target.value);
   };
@@ -16,7 +17,7 @@ const Navbar = ({language, setLanguage}: any) => {
     <Stack sx={{width: '100%'}} alignItems="center">
       <Stack sx={{width: '60%', height: '70px', borderBottom: '2px solid #000'}} alignItems="center">
         <Stack sx={{width: '80%', height: '70px'}} direction="row" alignItems="center" justifyContent="space-between">
-          <Stack sx={{width: '200px'}} direction="row" alignItems="center" justifyContent="space-between">
+          <Stack className='menu-content'>
             <Link to="/main" className='link'>
               {selectLanguage(navbarText.menuMain, language)}
             </Link>

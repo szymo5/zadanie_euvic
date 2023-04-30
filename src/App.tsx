@@ -6,7 +6,8 @@ import {Box} from '@mui/material'
 import './App.css';
 
 import Main from './pages/Main';
-import Navbar from './components/Navbar';
+import View from './pages/View';
+import Navbar from './components/Navbar/Navbar';
 import NotFound from './pages/NotFound';
 
 
@@ -18,6 +19,7 @@ const App = () => {
       <Navbar language={language} setLanguage={setLanguage}/>
       <Routes>
         <Route path='/main' element={<Main language={language}/>} />
+        <Route path='/view' element={<View language={language}/>} />
         <Route path='/404' element={<NotFound language={language}/>}/>
         <Route path='/' element={ <Navigate replace to="/main"/>} />
         <Route path='*' element={ <Navigate replace to="/404"/>} />

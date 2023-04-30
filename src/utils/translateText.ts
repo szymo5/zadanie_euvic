@@ -14,26 +14,6 @@ export const formText = {
     textfieldError: {
         pl: 'Przekroczono limit (max 250 znaków)',
         en: 'Limit exceeded (max 250 characters)'
-    },
-    inputPlaceholderName: {
-        pl: 'Imię',
-        en: 'Name'
-    },
-    inputPlaceholderAge: {
-        pl: 'Wiek',
-        en: 'Age'
-    },
-    inputPlaceholderDescription: {
-        pl: 'Życiorys',
-        en: 'Description'
-    },
-    formButtonAdd: {
-        pl: 'Dodaj',
-        en: 'Add'
-    },
-    formButtonEdit: {
-        pl: 'Edytuj',
-        en: 'Edit'
     }
 }
 
@@ -72,22 +52,6 @@ export const notFoundPage = {
 }
 
 export const tableText = {
-    headCellsLabelName: {
-        pl: 'Imię',
-        en: 'Name'
-    },
-    headCellsLabelAge: {
-        pl: 'Wiek',
-        en: 'Age'
-    },
-    headCellsLabelDate: {
-        pl: 'Data urodzenia',
-        en: 'Birth Date'
-    },
-    headCellsLabelDesc: {
-        pl: 'Życiorys',
-        en: 'Description'
-    },
     headCellsLabelActions: {
         pl: 'Akcje',
         en: 'Actions'
@@ -107,14 +71,36 @@ export const tableText = {
     paginationLabelDisplayMore: {
         pl: 'więcej niż',
         en: 'more than'
+    }
+}
+
+export const generalText = {
+    textName: {
+        pl: 'Imię',
+        en: 'Name'
     },
-    tooltipDelete: {
+    textAge: {
+        pl: 'Wiek',
+        en: 'Age'
+    },
+    textDate: {
+        pl: 'Data urodzenia',
+        en: 'Birth Date'
+    },
+    textBio: {
+        pl: 'Życiorys',
+        en: 'Biography'
+    },
+    textEdit: {
+        pl: 'Edytuj',
+        en: 'Edit' 
+    },
+    textAdd: {
+        pl: 'Dodaj',
+        en: 'Add'
+    },
+    textDelete: {
         pl: 'Usuń',
         en: 'Delete'
-    },
-    tooltipEdit: {
-        pl: 'Edytuj',
-        en: 'Edit'
     }
-    
 }

@@ -4,14 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSelector, useDispatch } from 'react-redux'
 
-import  {addPerson, editPerson} from '../redux/people'
-import {selectLanguage} from '../utils/selectLanguage';
-import {formText} from '../utils/translateText';
+import  {Person, addPerson, editPerson} from '../../redux/people'
+import {selectLanguage} from '../../utils/selectLanguage';
+import {formText, generalText} from '../../utils/translateText';
 
-import './Form.css';
+import './Form.scss';
 
 import { Box } from '@mui/material'
-import { RootState } from '../redux/store';
+import { RootState } from '../../redux/store';
 
 interface FormProps {
   language: string,
@@ -51,7 +51,7 @@ const Form = ({language, setCurrentId, currentId}: FormProps) => {
     resolver: yupResolver(schema),
   });
 
-  const handleDate = (e: any) => {
+  const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const date = new Date(e.target.value);
     const formattedDate = date.toISOString().slice(0,10);
     setData({...data, date: formattedDate});
@@ -59,11 +59,11 @@ const Form = ({language, setCurrentId, currentId}: FormProps) => {
 
   const dispatch = useDispatch()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Person) => {
     if(currentId){
       dispatch(editPerson({currentId, data}));
       setCurrentId('');
-      reset({})
+      reset({});
     } else {
       dispatch(addPerson(data));
       reset({});
@@ -73,18 +73,18 @@ const Form = ({language, setCurrentId, currentId}: FormProps) => {
   };
 
   return (
-    <Box sx={{width: '320px', padding: '20px 10px', border: '1px solid #ccc', textAlign: 'center', margin: '150px auto 0 auto'}} className="form-container">
+    <Box className="form-container">
       <h3 style={{marginBottom: '20px'}}>{currentId ? selectLanguage(formText.headerTextEdit, language) : selectLanguage(formText.headerTextAdd, language)}</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {(errors.name?.message) && <label className="create-label">{selectLanguage(formText.inputTextError, language)}</label>}
-        <input type="text" placeholder={selectLanguage(formText.inputPlaceholderName, language)} className='form-input' {...register("name")} value={data.name}  onChange={(e) => setData({...data, name: e.target.value})}/>
-        {(errors.age?.message) && <label className="create-label">{selectLanguage(formText.inputTextError, language)}</label>}
-        <input type="number" placeholder={selectLanguage(formText.inputPlaceholderAge, language)} className='form-input' {...register("age")} value={data.age} onChange={(e) => setData({...data, age: e.target.value})}/>
-        {(errors.date?.message) && <label className="create-label">{selectLanguage(formText.inputTextError, language)}</label>}
+        {(errors.name?.message) && <label className="error-label">{selectLanguage(formText.inputTextError, language)}</label>}
+        <input type="text" placeholder={selectLanguage(generalText.textName, language)} className='form-input' {...register("name")} value={data.name}  onChange={(e) => setData({...data, name: e.target.value})}/>
+        {(errors.age?.message) && <label className="error-label">{selectLanguage(formText.inputTextError, language)}</label>}
+        <input type="number" placeholder={selectLanguage(generalText.textAge, language)} className='form-input' {...register("age")} value={data.age} onChange={(e) => setData({...data, age: e.target.value})}/>
+        {(errors.date?.message) && <label className="error-label">{selectLanguage(formText.inputTextError, language)}</label>}
         <input type="date" placeholder="Date" className='form-input' {...register("date")} value={data.date} onChange={handleDate}/>
-        <textarea placeholder={selectLanguage(formText.inputPlaceholderDescription, language)} className='form-input textField' {...register("description")} value={data.description} onChange={(e) => setData({...data, description: e.target.value})}/>
-        {(errors.description?.message) && <label className="create-label">{selectLanguage(formText.textfieldError, language)}</label>}
-        <input type="submit" className='form-btn' value={currentId ? selectLanguage(formText.formButtonEdit, language) : selectLanguage(formText.formButtonAdd, language)}/>
+        <textarea placeholder={selectLanguage(generalText.textBio, language)} className='form-input textField' {...register("description")} value={data.description} onChange={(e) => setData({...data, description: e.target.value})}/>
+        {(errors.description?.message) && <label className="error-label">{selectLanguage(formText.textfieldError, language)}</label>}
+        <input type="submit" className='form-btn' value={currentId ? selectLanguage(generalText.textEdit, language) : selectLanguage(generalText.textAdd, language)}/>
       </form>
     </Box>
   )

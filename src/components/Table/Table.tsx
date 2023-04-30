@@ -7,13 +7,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { groupDelete, singleDelete } from '../redux/people';
+import { RootState } from '../../redux/store';
+import { groupDelete, singleDelete } from '../../redux/people';
 
-import {selectLanguage} from '../utils/selectLanguage';
-import {tableText} from '../utils/translateText';
+import {selectLanguage} from '../../utils/selectLanguage';
+import {tableText, generalText} from '../../utils/translateText';
 
-import {truncateDesc} from '../utils/truncateDesc';
+import {truncateDesc} from '../../utils/truncateDesc';
 
 
 interface Data {
@@ -31,7 +31,7 @@ interface EnhancedTableProps {
   language: string
 }
 
-function EnhancedTableHead(props: EnhancedTableProps) {
+const EnhancedTableHead = (props: EnhancedTableProps) => {
   const { onSelectAllClick, numSelected, rowCount, language } = props;
 
   interface HeadCell {
@@ -46,25 +46,25 @@ function EnhancedTableHead(props: EnhancedTableProps) {
       id: 'name',
       numeric: false,
       disablePadding: true,
-      label: selectLanguage(tableText.headCellsLabelName, language),
+      label: selectLanguage(generalText.textName, language),
     },
     {
       id: 'age',
       numeric: true,
       disablePadding: false,
-      label: selectLanguage(tableText.headCellsLabelAge, language),
+      label: selectLanguage(generalText.textAge, language),
     },
     {
       id: 'date',
       numeric: true,
       disablePadding: false,
-      label: selectLanguage(tableText.headCellsLabelDate, language),
+      label: selectLanguage(generalText.textDate, language),
     },
     {
       id: 'description',
       numeric: true,
       disablePadding: false,
-      label: selectLanguage(tableText.headCellsLabelDesc, language),
+      label: selectLanguage(generalText.textBio, language),
     }
   ];
   
@@ -112,7 +112,7 @@ interface EnhancedTableToolbarProps {
   language: string
 }
 
-function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const { numSelected, selected, setSelected, language } = props;
 
   const dispatch = useDispatch();
@@ -144,7 +144,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </Typography>
       }
       {numSelected > 0 && (
-        <Tooltip title={selectLanguage(tableText.tooltipDelete, language)}>
+        <Tooltip title={selectLanguage(generalText.textDelete, language)}>
           <IconButton onClick={() => groupRowsDelete(selected)}>
             <DeleteIcon />
           </IconButton>
@@ -161,9 +161,7 @@ interface MainTableProps {
 
 export default function EnhancedTable({language, setCurrentId}: MainTableProps) {
     const {people} = useSelector((state: RootState) => state.people)
-    console.log(people)
     const [selected, setSelected] = React.useState<string[]>([]);
-    // const [selected, setSelected] = useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -209,7 +207,6 @@ export default function EnhancedTable({language, setCurrentId}: MainTableProps) 
 
     const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
-    // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - people.length) : 0;
 
@@ -246,7 +243,6 @@ export default function EnhancedTable({language, setCurrentId}: MainTableProps) 
                                 return (
                                     <TableRow
                                         hover
-                                        // role="checkbox"
                                         aria-checked={isItemSelected}
                                         tabIndex={-1}
                                         key={row.id}
@@ -275,12 +271,12 @@ export default function EnhancedTable({language, setCurrentId}: MainTableProps) 
                                         <TableCell align="right">{row.date}</TableCell>
                                         <TableCell align="right">{truncateDesc(row.description)}</TableCell>
                                         <TableCell align='right'>
-                                            <Tooltip title={selectLanguage(tableText.tooltipDelete, language)}>
+                                            <Tooltip title={selectLanguage(generalText.textDelete, language)}>
                                                 <IconButton onClick={() => {singleRowDelete(row.id)}}>
                                                     <DeleteIcon/>
                                                 </IconButton>
                                             </Tooltip>
-                                            <Tooltip title={selectLanguage(tableText.tooltipEdit, language)}>
+                                            <Tooltip title={selectLanguage(generalText.textEdit, language)}>
                                                 <IconButton onClick={() => setCurrentId(row.id)}>
                                                     <EditIcon />
                                                 </IconButton>

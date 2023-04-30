@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { v4 as uuid } from 'uuid';
 
-interface Person {
+export interface Person {
   id: string
   name: string
   age: string
