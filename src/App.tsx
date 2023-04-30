@@ -14,7 +14,7 @@ const App = () => {
   const [language, setLanguage] = useState('en');
 
   return (
-    <Box sx={{width: '100%', height: '100vh'}} m='auto' p='0'>
+    <Box sx={{width: '100%'}} m='auto' p='0'>
       <Navbar language={language} setLanguage={setLanguage}/>
       <Routes>
         <Route path='/main' element={<Main language={language}/>} />
