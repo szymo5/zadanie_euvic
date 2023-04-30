@@ -32,7 +32,6 @@ const Navbar = ({language, setLanguage}: any) => {
                   value={language}
                   label={selectLanguage(navbarText.select, language)}
                   onChange={handleChange}
-                  sx={{'& after': {borderBottom: '2px solid #000!important'}}}
                 >
                   <MenuItem value="pl">{selectLanguage(navbarText.selectItemPl, language)}</MenuItem>
                   <MenuItem value="en">{selectLanguage(navbarText.selectItemEn, language)}</MenuItem>

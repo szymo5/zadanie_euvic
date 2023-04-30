@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { alpha } from '@mui/material/styles';
-import {Box, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Toolbar, Typography, Paper, Checkbox, IconButton, Tooltip} from '@mui/material';
+import {Box, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Toolbar, Typography, Paper, Checkbox, IconButton, Tooltip, checkboxClasses} from '@mui/material';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -79,7 +79,14 @@ const EnhancedTableHead = (props: EnhancedTableProps) => {
             inputProps={{
               'aria-label': 'select all desserts',
             }}
-            sx={{color: '#fff'}}
+            sx={{
+              [`&, &.${checkboxClasses.checked}`]: {
+                color: '#fff',
+              },
+              [`&, &.${checkboxClasses.indeterminate}`]: {
+                color: '#fff',
+              }
+            }}
           />
         </TableCell>
         {headCells.map((headCell) => (
@@ -128,8 +135,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+          backgroundColor: '#ddd'
         }),
       }}
     >
@@ -256,6 +262,11 @@ export default function EnhancedTable({language, setCurrentId}: MainTableProps) 
                                                 checked={isItemSelected}
                                                 inputProps={{
                                                     'aria-labelledby': labelId,
+                                                }}
+                                                sx={{
+                                                  [`&, &.${checkboxClasses.checked}`]: {
+                                                    color: '#555',
+                                                  }
                                                 }}
                                             />
                                         </TableCell>
